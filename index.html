@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Proyecto JavaScript</title>
+</head>
+<body>
+    <header>Proyecto Termómetro <b>JavaScript</b></header>
+    <div class="inputTermometro">
+        <label for="inputTemp" id="titulo">Introduzca la temperatura</label><br>
+        <input type="number" id="inputTemp" placeholder="En ºC"><br>
+        <button onclick="enviarTemp()">Enviar</button>
+    </div>
+    <div class="termometro">
+        <img src="img/termometro.png" alt="">
+        <div class="valor" id="valor"></div>
+    </div><br>
+    <p>La Temperatura introducida es: <span id="textTemp"></span></p>
+    <script>
+        function enviarTemp() {
+            const barra = document.getElementById("valor");
+            const temp = parseFloat(document.getElementById("inputTemp").value);
+            const text = document.getElementById("titulo");
+            const textTemp = document.getElementById("textTemp");
+            
+
+            if (temp < 0 || temp > 50) {
+                
+                text.textContent = "Temperatura invalida";
+                text.style.padding = "20px";
+                return;
+            }
+            barra.style.height = (temp / 50) * 270 + "px";
+
+            if (temp >= 0 && temp <= 10) {
+                barra.style.backgroundColor = "blue";
+            } else if (temp >= 10 && temp <= 25) {
+                barra.style.backgroundColor = "green";
+            } else {
+                barra.style.backgroundColor = "red";
+            }
+            textTemp.textContent = temp + " ºC";
+            textTemp.style.fontWeight = "bold";
+        }
+    </script>
+</body>
+</html>
